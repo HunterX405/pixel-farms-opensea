@@ -83,7 +83,11 @@ def get_farms() -> None:
 def main():
     sync()
     get_farms()
-    ui.run(title='Pixel Farms Opensea', dark=True,reload=False)
+    ui.run(title='Pixel Farms Opensea',
+           dark=True,
+           tailwind=False,
+           reload=False
+           )
 
 
 main()
