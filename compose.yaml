@@ -15,6 +15,8 @@ services:
       - ./app:/app
     ports:
       - 8080:8080
+    environment:
+      - OPENSEA_API_KEY=9df921c5722c48abac8c8c01f8f80e61
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
