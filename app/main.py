@@ -1,6 +1,8 @@
 from nicegui import ui
 from requests import Session
 import time
+import os
+
 
 # Network Session
 s = Session()
@@ -23,7 +25,7 @@ def get_opensea_listings(collection, s=Session()):
     listings_url = f"https://api.opensea.io/v2/listings/collection/{collection}/all"
     s.headers.update({
         "accept": "application/json",
-        "X-API-KEY": "9df921c5722c48abac8c8c01f8f80e61"
+        "X-API-KEY": os.getenv('OPENSEA_API_KEY')
     })
     opensea_api = get_api(listings_url, s=s)
     listings = opensea_api['listings']
