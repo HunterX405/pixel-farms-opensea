@@ -23,7 +23,7 @@ def get_opensea_listings(collection, s=Session()):
     listings_url = f"https://api.opensea.io/v2/listings/collection/{collection}/all"
     s.headers.update({
         "accept": "application/json",
-        "X-API-KEY": "d6f7308aebe3444ea7fee808388e3138"
+        "X-API-KEY": "9df921c5722c48abac8c8c01f8f80e61"
     })
     opensea_api = get_api(listings_url, s=s)
     listings = opensea_api['listings']
