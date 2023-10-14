@@ -11,8 +11,6 @@ services:
   server:
     build:
       context: .
-    volumes:
-      - ./app:/app
     ports:
       - 8080:8080
     environment:
