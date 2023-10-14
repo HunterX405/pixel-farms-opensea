@@ -88,7 +88,8 @@ def main():
     ui.run(title='Pixel Farms Opensea',
            dark=True,
            tailwind=False,
-           reload=False
+           reload=False,
+           port=3000
            )
 
 

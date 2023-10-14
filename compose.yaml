@@ -12,7 +12,7 @@ services:
     build:
       context: .
     ports:
-      - 8080:8080
+      - 3000:3000
     environment:
       - OPENSEA_API_KEY=9df921c5722c48abac8c8c01f8f80e61
 
