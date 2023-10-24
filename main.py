@@ -57,12 +57,16 @@ def get_farms() -> None:
     else:
         ui.label("No listings found")
 
+@ui.page('/')
+def page():
+    get_farms()
+
 
 def main():
     app.on_exception(print)
     app.on_connect(sync())
-    get_farms()
-    ui.run(title='Pixel Farms Opensea', dark=True, tailwind=False, reload=False, port=3000)
+    page()
+    ui.run(title='Pixels', dark=True, tailwind=False, reload=False)
 
 main()
     
