@@ -3,8 +3,8 @@ import opensea
 
 
 COLLECTION = "pixels-farm"
-
 all_listings = []
+
 # Pagination
 start = 0
 limit = 10
@@ -64,9 +64,10 @@ def page():
 
 def main():
     app.on_exception(print)
-    app.on_connect(sync())
+    app.on_startup(sync())
+    # app.on_connect(sync())
     page()
-    ui.run(title='Pixels', dark=True, tailwind=False, reload=False)
+    ui.run(title='Pixels', dark=True, reload=False)
 
 main()
     

@@ -6,13 +6,15 @@ class HunterAPI:
 
     client = httpx.AsyncClient(http2=True)
     logging = False
+    logs = False
 
     def log_message(message):
-        print(message)
-        if not HunterAPI.logging:
-            LINE_UP = '\033[1A'
-            LINE_CLEAR = '\x1b[2K'
-            print(LINE_UP, end=LINE_CLEAR)
+        if HunterAPI.logs:
+            print(message)
+            if not HunterAPI.logging:
+                LINE_UP = '\033[1A'
+                LINE_CLEAR = '\x1b[2K'
+                print(LINE_UP, end=LINE_CLEAR)
 
     async def log_request(request):
         HunterAPI.log_message(
@@ -38,7 +40,7 @@ class HunterAPI:
             retry = retries + 1
             elapsed = total_elapsed + response.elapsed.total_seconds()
 
-            return await HunterAPI.call(req, retry, elapsed)
+            return HunterAPI.call(req, retry, elapsed)
 
         HunterAPI.log_message(
             f"Request took {response.elapsed.total_seconds() + total_elapsed:.2f} seconds")
