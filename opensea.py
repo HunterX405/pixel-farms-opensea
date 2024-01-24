@@ -5,7 +5,9 @@ import os, asyncio
 load_dotenv()
 # Opensea API Key
 OPENSEA_API_KEY = os.getenv("OPENSEA_API_KEY")
-HunterAPI.client.headers = {"X-API-KEY": OPENSEA_API_KEY}
+
+opensea_api = HunterAPI()
+opensea_api.set_api_key(OPENSEA_API_KEY)
 
 
 async def refresh_metadata(network: str, address: str, token: str | int, sleep: int = 0):
@@ -24,7 +26,7 @@ async def refresh_metadata(network: str, address: str, token: str | int, sleep: 
     """
 
     url = f"https://api.opensea.io/v2/chain/{network}/contract/{address}/nfts/{token}/refresh"
-    await HunterAPI.post(url)
+    await opensea_api.post(url)
     await asyncio.sleep(sleep)
 
 
@@ -44,7 +46,7 @@ async def get_collection_info(collection: str) -> dict:
     """
 
     url = f"https://api.opensea.io/v2/collection/{collection}/nfts"
-    response = await HunterAPI.get(url, {'limit': '1'})
+    response = await opensea_api.get(url, {'limit': '1'})
     nft = response.json()['nfts'][0]
 
     contract_address = nft['contract']
@@ -77,7 +79,7 @@ async def get_owners(contract: str, token: str, network: str) -> dict:
         owners: [ { address: "", quantity: "" } ] }
     """
     url = f"https://api.opensea.io/api/v2/chain/{network}/contract/{contract}/nfts/{token}"
-    response = await HunterAPI.get(url)
+    response = await opensea_api.get(url)
     
     return response.json()['nft']
 
@@ -92,12 +94,12 @@ async def get_opensea_listings(collection: str) -> dict:
 
     """
     url = f"https://api.opensea.io/v2/listings/collection/{collection}/all"
-    response = await HunterAPI.get(url)
+    response = await opensea_api.get(url)
     content = response.json()
     listings = content['listings']
     
     while "next" in content:
-        response = await HunterAPI.get(url, {"next": content["next"]})
+        response = await opensea_api.get(url, {"next": content["next"]})
         content = response.json()
         listings += content['listings']
 
