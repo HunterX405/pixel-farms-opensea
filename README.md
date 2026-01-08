@@ -2,7 +2,7 @@
 
 This project is a **marketplace explorer and listing viewer** for **Pixels (Pixels.xyz)**, a Web3 farming game where players can own land, customize it, and collaborate with others to farm together.
 
-The application focuses on **discovering and browsing land plots and pets available for sale** on the **OpenSea marketplace**, helping players find assets they may want to purchase using cryptocurrency — without directly interacting with a Web3 wallet.
+The application focuses on **discovering and browsing land plots and pets available for sale** on the **OpenSea marketplace**, helping players find assets they may want to purchase using cryptocurrency without directly interacting with a Web3 wallet.
 
 ---
 
